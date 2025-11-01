@@ -29,7 +29,7 @@ tests/          # Unit tests for project modules
 ## 📖 Learning Roadmap
 
 Implementation order, references, datasets, and difficulty ratings are all documented in  
-👉 **[`TIMELINE.md`](./TIMELINE.md)**
+👉 **[`TIMELINE.md`](documentation/TIMELINE.md)**
 
 That file defines the **canonical progression** of ScratchGen — from probabilistic VAEs to modern multimodal diffusion systems.
 
@@ -56,25 +56,3 @@ ScratchGen emphasizes **re-derivation and self-implementation**:
 
 ---
 
-## 🧰 Requirements
-
-- Python ≥ 3.9  
-- PyTorch ≥ 2.0  
-- Matplotlib, NumPy, tqdm, torchvision  
-- Optional: CUDA, Weights & Biases (for logging)
-
-Install dependencies:
-```bash
-pip install -r requirements.txt
-````
-
----
-
-## 🔗 References
-
-* Full list of key papers and implementation sequence in **[`TIMELINE.md`](./TIMELINE.md)**
-* Base inspiration: *Kingma & Welling (2013)* → *Goodfellow (2014)* → *Ho et al. (2020)* → *Peebles & Xie (2022)* → *Yao et al. (2025)*
-
----
-
-> 📘 **Start here:** open [`TIMELINE.md`](./TIMELINE.md) to follow the exact implementation order.
