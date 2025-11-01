@@ -1,0 +1,95 @@
+ScratchGen/
+│
+├── README.md                      # Project overview and learning guide
+├── TIMELINE.md                    # Chronological generative model roadmap (core learning file)
+├── requirements.txt                # Dependencies for all model types
+├── setup.py                        # Optional: packaging setup
+│
+├── notebooks/                      # From-scratch PyTorch implementations (learning notebooks)
+│   ├── 01_vae.ipynb
+│   ├── 02_gan.ipynb
+│   ├── 03_pixelcnn.ipynb
+│   ├── 04_realnvp.ipynb
+│   ├── 05_vqvae.ipynb
+│   ├── 06_ddpm.ipynb
+│   ├── 07_latent_diffusion.ipynb
+│   ├── 08_dit.ipynb
+│   ├── 09_consistency.ipynb
+│   └── 10_multimodal_diffusion.ipynb
+│
+├── data/                           # Datasets (raw + processed)
+│   ├── raw/
+│   │   ├── mnist/
+│   │   ├── cifar10/
+│   │   ├── celebA/
+│   │   └── ffhq/
+│   ├── processed/
+│   │   └── normalized/
+│   └── download_datasets.py        # Script to auto-download and preprocess datasets
+│
+├── src/                            # Core source code
+│   ├── __init__.py
+│   │
+│   ├── utils/                      # Utility modules
+│   │   ├── __init__.py
+│   │   ├── data_utils.py           # Dataset loading, normalization, augmentation
+│   │   ├── visualization.py        # Latent traversals, generated samples, loss curves
+│   │   ├── metrics.py              # FID, IS, reconstruction loss, etc.
+│   │   ├── noise_schedules.py      # For diffusion models (beta schedules, etc.)
+│   │   └── config.py               # Global config management
+│   │
+│   ├── models/                     # Core architectures (each paper = one file)
+│   │   ├── __init__.py
+│   │   ├── vae.py
+│   │   ├── gan.py
+│   │   ├── pixelcnn.py
+│   │   ├── realnvp.py
+│   │   ├── glow.py
+│   │   ├── vqvae.py
+│   │   ├── ddpm.py
+│   │   ├── latent_diffusion.py
+│   │   ├── dit.py
+│   │   ├── consistency_models.py
+│   │   └── multimodal_diffusion.py
+│   │
+│   ├── trainers/                   # Training pipelines
+│   │   ├── __init__.py
+│   │   ├── base_trainer.py         # Common trainer base class
+│   │   ├── train_vae.py
+│   │   ├── train_gan.py
+│   │   ├── train_pixelcnn.py
+│   │   ├── train_flow.py
+│   │   ├── train_vqvae.py
+│   │   ├── train_diffusion.py
+│   │   ├── train_latent_diffusion.py
+│   │   ├── train_dit.py
+│   │   └── train_multimodal.py
+│   │
+│   └── evaluators/                 # Evaluation scripts
+│       ├── __init__.py
+│       ├── evaluate_reconstruction.py
+│       ├── evaluate_fid_is.py
+│       └── evaluate_sampling.py
+│
+├── experiments/                    # Logs, weights, checkpoints, generated samples
+│   ├── vae/
+│   ├── gan/
+│   ├── vqvae/
+│   ├── ddpm/
+│   ├── dit/
+│   └── multimodal/
+│
+├── tests/                          # Sanity checks and module tests
+│   ├── test_models.py
+│   ├── test_trainers.py
+│   ├── test_utils.py
+│   └── test_sampling.py
+│
+└── scripts/                        # Simple run/evaluation scripts
+    ├── run_vae.py
+    ├── run_gan.py
+    ├── run_pixelcnn.py
+    ├── run_diffusion.py
+    ├── run_latent_diffusion.py
+    ├── run_dit.py
+    └── evaluate_model.py

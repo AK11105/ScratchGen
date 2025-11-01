@@ -1,0 +1,56 @@
+# ============================
+# ScratchGen — Requirements
+# ============================
+
+# Core Deep Learning
+torch>=2.3.0
+torchvision>=0.18.0
+torchaudio>=2.3.0
+
+# Numerical & Scientific
+numpy>=1.26.0
+scipy>=1.12.0
+
+# Data & Image Processing
+Pillow>=10.0.0
+tqdm>=4.66.0
+matplotlib>=3.9.0
+seaborn>=0.13.0
+
+# Logging, Experiment Tracking, Visualization
+tensorboard>=2.16.0
+# optional; for logging experiments
+wandb>=0.17.0 
+# tensor rearrangements (esp. for Transformers & DiT)         
+einops>=0.8.0    
+# optional; clean training boilerplate      
+pytorch-lightning>=2.4.0  
+
+# Evaluation & Metrics
+scikit-image>=0.24.0
+# perceptual loss (for VQGAN, etc.)
+lpips>=0.1.4 
+# for FID, IS, PSNR, SSIM, etc.           
+torchmetrics>=1.4.0     
+
+# Utilities
+requests>=2.31.0
+pandas>=2.2.0
+# config parsing
+pyyaml>=6.0.2         
+
+# Notebook / Development
+jupyter>=1.0.0
+ipykernel>=6.29.0
+notebook>=7.2.0
+
+# Optional — Transformers / Tokenization (for LDM, DiT, multimodal)
+transformers>=4.43.0
+sentencepiece>=0.2.0
+# CLIP for text guidance
+clip-anytorch>=2.6.0    
+
+# Optional — Diffusion / 3D Work
+# geometry utilities (for NeRF, Gaussian Splatting)
+trimesh>=4.4.0         
+opencv-python>=4.9.0.80
