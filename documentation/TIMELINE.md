@@ -2,227 +2,295 @@
 
 ---
 
-## 1. **Variational Autoencoder (VAE, 2013)**
+## 1. **Variational Autoencoder (VAE, 2013)** — **IMPLEMENT**
 
 * **Key innovation:** Reparameterization trick, ELBO training.
 * **Learning focus:** Probabilistic encoders/decoders, KL divergence, latent traversals.
-* **Paper:** [Auto-Encoding Variational Bayes](https://arxiv.org/pdf/1312.6114)
+* **Paper:** Auto-Encoding Variational Bayes
 * **Datasets:** MNIST → FashionMNIST → CIFAR-10
 * **Difficulty:** easy → moderate
-* **Project tasks:** implement Gaussian encoder/decoder, ELBO loss, latent interpolation visualization.
+* **Project tasks:** implement Gaussian encoder/decoder, ELBO, latent interpolation.
+
+---
+
+## 1a. **Denoising Autoencoder (DAE, 2010)** — **PARTIALLY IMPLEMENT**
+
+* **Key innovation:** Reconstruction from corrupted inputs.
+* **Learning focus:** Noise robustness.
+* **Paper:** Denoising Autoencoders
+* **Datasets:** MNIST
+* **Difficulty:** easy
+* **Project tasks:** add noise + reconstruct clean targets.
+
+---
+
+## 1b. **Sparse & Contractive Autoencoders (2011–2012)** — **READ ONLY**
+
+* **Key innovation:** Sparsity / Jacobian penalties.
+* **Learning focus:** Representation regularization.
+* **Paper:** Sparse AEs, Contractive AEs
+* **Datasets:** MNIST
+* **Difficulty:** easy
+* **Project tasks:** optional α-L1 or contractive loss experiments.
 
 ---
 
 ## 2. **Autoregressive Models**
 
-### 2a. **PixelRNN (2016)**
+### 2a. **PixelRNN (2016)** — **PARTIALLY IMPLEMENT**
 
-* **Key innovation:** Pixel-by-pixel autoregressive modeling.
-* **Learning focus:** RNN-based factorization of pixels.
-* **Paper:** [PixelRNN](https://proceedings.mlr.press/v48/oord16.pdf)
+* **Key innovation:** Pixel-by-pixel sequential prediction.
+* **Learning focus:** RNN factorization of images.
+* **Paper:** PixelRNN
 * **Datasets:** MNIST, CIFAR-10
 * **Difficulty:** moderate
-* **Project tasks:** implement sequential pixel prediction with RNNs.
+* **Project tasks:** implement masked RNN sampler.
 
-### 2b. **PixelCNN (2016)**
+### 2b. **PixelCNN (2016)** — **IMPLEMENT**
 
-* **Key innovation:** Convolutional autoregressive modeling; masked convolutions.
-* **Learning focus:** Parallelized pixel prediction.
-* **Paper:** [PixelCNN](https://proceedings.mlr.press/v48/oord16.pdf)
+* **Key innovation:** Masked convolutions.
+* **Learning focus:** Parallel autoregressive modeling.
+* **Paper:** PixelCNN
 * **Datasets:** MNIST, CIFAR-10
 * **Difficulty:** moderate
-* **Project tasks:** implement masked convolutions, train on pixel likelihood, sampling loop.
+* **Project tasks:** build masked conv layers + sampling.
+
+### 2c. **PixelCNN++ (2017)** — **READ ONLY / OPTIONAL PARTIAL**
+
+* **Key innovation:** Discretized mixture logistics.
+* **Learning focus:** Improved pixel likelihoods.
+* **Paper:** PixelCNN++
+* **Datasets:** CIFAR-10
+* **Difficulty:** moderate
+* **Project tasks:** optional mixture logistic head.
 
 ---
 
 ## 3. **Flow-Based Models**
 
-### 3a. **RealNVP (2016)**
+### 3a. **RealNVP (2016)** — **IMPLEMENT**
 
-* **Key innovation:** Invertible transformations, tractable log-likelihood.
-* **Learning focus:** Affine coupling, log-determinants, forward/inverse mapping.
-* **Paper:** [RealNVP](https://arxiv.org/abs/1605.08803)
-* **Datasets:** CIFAR-10, low-res ImageNet
+* **Key innovation:** Invertible affine coupling.
+* **Learning focus:** Jacobians, exact likelihood.
+* **Paper:** RealNVP
+* **Datasets:** CIFAR-10
 * **Difficulty:** moderate → hard
-* **Project tasks:** implement coupling layers, compute Jacobian log-determinants.
+* **Project tasks:** build coupling layers, compute log-dets.
 
-### 3b. **Glow (2018)**
+### 3b. **Glow (2018)** — **PARTIALLY IMPLEMENT**
 
-* **Key innovation:** Invertible 1×1 convolution, actnorm.
-* **Learning focus:** Scaling flows to high-resolution images.
-* **Paper:** [Glow](https://arxiv.org/pdf/1807.03039)
+* **Key innovation:** Invertible 1×1 conv, actnorm.
+* **Learning focus:** scalable flows.
+* **Paper:** Glow
 * **Datasets:** CIFAR-10, ImageNet
 * **Difficulty:** hard
-* **Project tasks:** implement invertible convolutions, multi-scale architecture.
+* **Project tasks:** implement 1×1 conv + actnorm; skip full multi-scale if too heavy.
+
+### 3c. **MAF / MADE (2015–2017)** — **READ ONLY**
+
+* **Key innovation:** Autoregressive flows.
+* **Learning focus:** masked linear models.
+* **Papers:** MADE, MAF
+* **Difficulty:** moderate
+* **Project tasks:** optional small MADE layer experiment.
 
 ---
 
-## 4. **Generative Adversarial Networks (GANs)**
+## 4. **Energy-Based & Score-Matching Models**
 
-### 4a. **Vanilla GAN (2014)**
+### 4a. **Energy-Based Models (EBMs)** — **READ ONLY**
 
-* **Key innovation:** Adversarial generator/discriminator.
-* **Learning focus:** Minimax optimization, basic GAN training.
-* **Paper:** [GAN](https://arxiv.org/pdf/1406.2661)
-* **Datasets:** MNIST, CIFAR-10
+* **Key innovation:** Unnormalized energy functions.
+* **Learning focus:** MCMC, contrastive divergence.
+* **Paper:** EBM surveys
+* **Datasets:** small toy images
+* **Difficulty:** hard
+* **Project tasks:** optional Langevin sampler.
+
+### 4b. **Score-Based Generative Models (2019–2020)** — **PARTIALLY IMPLEMENT**
+
+* **Key innovation:** Learning ∇x log p(x).
+* **Learning focus:** score matching + SDE samplers.
+* **Paper:** Score-Based Generative Modeling
+* **Datasets:** CIFAR-10
+* **Difficulty:** hard
+* **Project tasks:** implement denoising score matching + simple Langevin sampler.
+
+---
+
+## 5. **Generative Adversarial Networks (GANs)**
+
+### 5a. **Vanilla GAN (2014)** — **IMPLEMENT**
+
+* **Key innovation:** Adversarial min-max.
+* **Datasets:** MNIST
 * **Difficulty:** moderate
-* **Project tasks:** implement basic GAN, train generator and discriminator.
+* **Project tasks:** implement generator + discriminator.
 
-### 4b. **DCGAN (2015)**
+### 5b. **DCGAN (2015)** — **IMPLEMENT**
 
-* **Key innovation:** Deep convolutional architectures for GANs.
-* **Learning focus:** Conv layers, feature maps, improved stability.
-* **Paper:** [DCGAN](https://arxiv.org/abs/1511.06434)
+* **Key innovation:** Convolutional GANs.
+* **Datasets:** CelebA
+* **Difficulty:** moderate
+* **Project tasks:** implement full DCGAN.
+
+### 5c. **WGAN & WGAN-GP (2017)** — **IMPLEMENT**
+
+* **Key innovation:** Wasserstein distance + gradient penalty.
 * **Datasets:** CIFAR-10, CelebA
 * **Difficulty:** moderate
-* **Project tasks:** implement convolutional generator/discriminator.
+* **Project tasks:** implement critic, GP, improved stability.
 
-### 4c. **WGAN (2017)**
+### 5d. **SAGAN (2018)** — **PARTIALLY IMPLEMENT**
 
-* **Key innovation:** Wasserstein distance for better loss stability.
-* **Learning focus:** Earth-Mover distance, gradient clipping.
-* **Paper:** [WGAN](https://arxiv.org/abs/1701.07875)
-* **Datasets:** CIFAR-10, CelebA
-* **Difficulty:** moderate
-* **Project tasks:** implement WGAN loss, gradient penalty optional.
-
-### 4d. **SAGAN (2018)**
-
-* **Key innovation:** Self-attention in GANs for long-range dependencies.
-* **Learning focus:** Attention layers in generator/discriminator.
-* **Paper:** [SAGAN](https://arxiv.org/abs/1805.08318)
+* **Key innovation:** Self-attention in GANs.
 * **Datasets:** ImageNet subsets
 * **Difficulty:** hard
-* **Project tasks:** implement self-attention layers inside GAN.
+* **Project tasks:** integrate attention block into DCGAN/WGAN.
 
 ---
 
-## 5. **VQ & Discrete Latents**
+## 6. **VQ & Discrete Latents**
 
-### 5a. **VQ-VAE (2017)**
+### 6a. **VQ-VAE (2017)** — **IMPLEMENT**
 
-* **Key innovation:** Discrete latent codebooks.
-* **Learning focus:** Vector quantization, straight-through estimator.
-* **Paper:** [VQ-VAE](https://arxiv.org/abs/1711.00937)
-* **Datasets:** CelebA, ImageNet subsets
+* **Key innovation:** Discrete codebooks, straight-through estimator.
+* **Datasets:** CelebA
 * **Difficulty:** moderate → hard
-* **Project tasks:** implement codebook, commitment/reconstruction loss.
+* **Project tasks:** codebook, commitment loss.
 
-### 5b. **VQ-VAE-2 (2019)**
+### 6b. **VQ-VAE-2 (2019)** — **PARTIALLY IMPLEMENT**
 
-* **Key innovation:** Multi-scale latent hierarchy.
-* **Learning focus:** Multi-scale token modeling.
-* **Paper:** [VQ-VAE-2](https://papers.neurips.cc/paper/9625-generating-diverse-high-fidelity-images-with-vq-vae-2.pdf)
-* **Datasets:** CelebA, ImageNet
+* **Key innovation:** Multi-level discrete latents.
+* **Datasets:** ImageNet
 * **Difficulty:** hard
-* **Project tasks:** implement hierarchical VQ-VAE-2, train on multi-scale latents.
+* **Project tasks:** two-level VQ only (full model is heavy).
 
 ---
 
-## 6. **Transformer Decoders**
+## 7. **Disentanglement Models**
 
-### 6a. **GPT-Style Transformer (2017)**
+### 7a. **β-VAE (2017)** — **PARTIALLY IMPLEMENT**
+
+* **Key innovation:** KL-scaled disentanglement.
+* **Datasets:** dSprites
+* **Difficulty:** easy
+* **Project tasks:** modify VAE loss, visualize factors.
+
+### 7b. **FactorVAE (2018)** — **READ ONLY**
+
+* **Key innovation:** Total correlation penalty.
+* **Datasets:** dSprites
+* **Difficulty:** moderate
+* **Project tasks:** optional TC discriminator.
+
+---
+
+## 8. **Transformer Decoders**
+
+### 8a. **GPT-Style Transformer (2017)** — **PARTIALLY IMPLEMENT**
 
 * **Key innovation:** Autoregressive self-attention.
-* **Learning focus:** Masked self-attention, positional encodings.
-* **Paper:** [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
-* **Datasets:** text corpora, VQ-token sequences
+* **Datasets:** text or VQ tokens
 * **Difficulty:** moderate → hard
-* **Project tasks:** implement small Transformer decoder for sequences.
+* **Project tasks:** small decoder-only transformer.
 
 ---
 
-## 7. **Diffusion Models**
+## 9. **Diffusion Models**
 
-### 7a. **DDPM (2020)**
+### 9a. **DDPM (2020)** — **IMPLEMENT**
 
-* **Key innovation:** Reverse denoising process.
-* **Learning focus:** Noise schedules, iterative sampling.
-* **Paper:** [DDPM](https://proceedings.neurips.cc/paper/2020/file/4c5bcfec8584af0d967f1ab10179ca4b-Paper.pdf)
-* **Datasets:** CIFAR-10, CelebA
+* **Key innovation:** Reverse diffusion.
+* **Datasets:** CIFAR-10
 * **Difficulty:** moderate → hard
-* **Project tasks:** train noise-predicting network, implement DDIM sampling.
+* **Project tasks:** full DDPM training + DDIM sampling.
 
-### 7b. **Latent Diffusion (2022)**
+### 9b. **Score-SDE (2019–2020)** — **PARTIALLY IMPLEMENT**
 
-* **Key innovation:** Diffusion in compressed latent space, CLIP guidance.
-* **Learning focus:** Conditional generation, efficiency.
-* **Paper:** [LDM](https://proceedings.mlr.press/v162/cohen22b/cohen22b.pdf)
-* **Datasets:** LAION, CIFAR
+* **Key innovation:** continuous-time formulation.
+* **Datasets:** CIFAR-10
 * **Difficulty:** hard
-* **Project tasks:** implement latent diffusion on CIFAR latents, add CLIP guidance.
+* **Project tasks:** convert DDPM U-Net into SDE sampler.
+
+### 9c. **Latent Diffusion (2022)** — **PARTIALLY IMPLEMENT**
+
+* **Key innovation:** Diffusion in latent VAE space.
+* **Datasets:** CIFAR (toy), LAION (full)
+* **Difficulty:** hard
+* **Project tasks:** tiny latent diffusion setup.
+
+### 9d. **Classifier-Free Guidance & Cross-Attention (2022)** — **PARTIALLY IMPLEMENT**
+
+* **Key innovation:** conditioning + guidance scale.
+* **Datasets:** image–text pairs
+* **Difficulty:** moderate
+* **Project tasks:** add text embeddings and cross-attention blocks.
 
 ---
 
-## 8. **VQ + Perceptual Losses**
+## 10. **VQ + Perceptual Losses**
 
-### 8a. **VQGAN (2019)**
+### 10a. **VQGAN (2019)** — **PARTIALLY IMPLEMENT**
 
-* **Key innovation:** GAN + VQ + perceptual loss.
-* **Learning focus:** Hybrid training losses, codebook interaction.
-* **Paper:** [VQGAN](https://arxiv.org/abs/1906.00446)
-* **Datasets:** CelebA, CIFAR
+* **Key innovation:** perceptual + adversarial loss + VQ.
+* **Datasets:** CelebA
 * **Difficulty:** hard
-* **Project tasks:** implement reconstruction + perceptual + adversarial loss combination.
+* **Project tasks:** simplified VQGAN (skip full discriminator pyramid).
 
 ---
 
-## 9. **Diffusion Transformers**
+## 11. **Diffusion Transformers**
 
-### 9a. **DiT (2022)**
+### 11a. **DiT (2022)** — **READ ONLY / OPTIONAL PARTIAL**
 
-* **Key innovation:** Transformer backbone for diffusion.
-* **Learning focus:** Patch embeddings, residual attention.
-* **Paper:** [DiT](https://arxiv.org/pdf/2501.01423.pdf)
-* **Datasets:** ImageNet 256×256, LSUN
+* **Key innovation:** Transformers as diffusion denoisers.
+* **Datasets:** ImageNet
 * **Difficulty:** hard
-* **Project tasks:** implement patch embeddings, attention blocks, train on low-res ImageNet.
+* **Project tasks:** implement minimal DiT block.
 
 ---
 
-## 10. **Consistency & Rectified Flow**
+## 12. **Consistency & Rectified Flow**
 
-### 10a. **Consistency Models (2023)**
+### 12a. **Consistency Models (2023)** — **PARTIALLY IMPLEMENT**
 
-* **Key innovation:** Deterministic sampling with consistency loss.
-* **Learning focus:** ODE flows, fast sampling.
-* **Paper:** [CS231n Lecture 14](https://cs231n.stanford.edu/slides/2025/lecture_14.pdf)
-* **Datasets:** CIFAR-10, ImageNet
-* **Difficulty:** moderate → hard
-* **Project tasks:** implement ODE-based rectified flow sampler.
+* **Key innovation:** deterministic fast samplers.
+* **Datasets:** CIFAR-10
+* **Difficulty:** hard
+* **Project tasks:** implement consistency loss + ODE sampler.
 
 ---
 
-## 11. **3D / Neural Radiance Generative Models**
+## 13. **3D / Neural Radiance Generative Models**
 
-### 11a. **DreamFusion (2022)**
+### 13a. **DreamFusion (2022)** — **READ ONLY**
 
-* **Key innovation:** Text-to-3D generation via differentiable rendering.
-* **Paper:** [DreamFusion](https://www.sciencedirect.com/science/article/pii/S209526352400147X)
-* **Difficulty:** hard
-* **Project tasks:** implement 3D NeRF generator guided by diffusion prior.
-
----
-
-## 12. **Foundation-Model-Aligned Latents**
-
-### 12a. **VA-VAE + LightningDiT (2025)**
-
-* **Key innovation:** Align latent space with pretrained vision foundation models.
-* **Paper:** [VA-VAE + LightningDiT](https://arxiv.org/pdf/2501.01423.pdf)
-* **Difficulty:** hard
-* **Project tasks:** retrain VAE with alignment loss for better latent diffusion.
+* **Key innovation:** diffusion-guided NeRF optimization.
+* **Datasets:** rendered small scenes
+* **Difficulty:** very hard
+* **Project tasks:** optional tiny NeRF + image prior.
 
 ---
 
-## 13. **Multimodal / LLM-Guided Generation**
+## 14. **Foundation-Model-Aligned Latents**
 
-### 13a. **Text-to-Image w/ LLM Guidance (2024–2025)**
+### 14a. **VA-VAE + LightningDiT (2025)** — **READ ONLY**
 
-* **Key innovation:** Merge LLMs with diffusion for semantic control.
-* **Paper / Demo:** [FLUX](https://www.youtube.com/watch?v=Dmm4UG-6jxA)
+* **Key innovation:** align VAE latents with foundation vision models.
 * **Difficulty:** hard
-* **Project tasks:** build lightweight text-to-image pipeline with CLIP embeddings conditioning diffusion.
+* **Project tasks:** none required.
+
+---
+
+## 15. **Multimodal / LLM-Guided Generation**
+
+### 15a. **Text-to-Image w/ LLM Guidance (2024–2025)** — **PARTIALLY IMPLEMENT**
+
+* **Key innovation:** semantic conditioning from LLM outputs.
+* **Datasets:** image–text pairs
+* **Difficulty:** hard
+* **Project tasks:** LLM → CLIP embed → latent diffusion conditioning.
 
 ---
 
